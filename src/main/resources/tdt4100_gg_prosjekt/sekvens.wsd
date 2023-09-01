@@ -1,0 +1,31 @@
+@startuml sekvensdiagram
+actor spiller
+participant "controller" as c
+participant "GameLogic" as gl 
+participant "Player" as p
+participant "cardDeck" as cd
+    spiller -> c ++ :onHitButton()
+    c -> gl ++: gameLogic.hitPlayer()
+    gl -> p ++: player.hit(CardDeck)
+    p -> cd ++: cardDeck.giveRandomCard(player.cardHand)
+    group check if user bet is 0 
+        cd -[#green]-> p: Card
+        note right : her returneres \ningenting men \nplayer får et kort\ni hånden 
+        p -[#green]-> gl: Success
+        gl -> gl : checkIfPlayerHasbusted
+        note right : disse checkerne\noppdaterer tilstander i\ngameLogic-klassen
+        gl -> gl : checkIfPlayerHasBlackJack
+        gl -[#green]-> c : Success
+        c -[#green]-> spiller : Updates View
+    else bet is 0
+        cd -[#red]-> p --: error
+        p -[#red]-> gl: error
+        gl -[#red]-> c --: error
+        c --> spiller --: forteller spiller at han må\nbette for å hitte
+        note right : her håndteres unntaket
+        end
+
+    
+    
+
+@enduml

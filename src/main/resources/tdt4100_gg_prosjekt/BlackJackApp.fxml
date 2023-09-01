@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="341.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4100_gg_prosjekt.BlackJackAppController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="587.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@pokertable.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="dealerMustHit" fitHeight="222.0" fitWidth="306.0" layoutX="133.0" layoutY="-97.0" opacity="0.21" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@bjlabel.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="logInPage" prefHeight="342.0" prefWidth="580.0">
+         <children>
+            <TextField fx:id="userNameField" layoutX="215.0" layoutY="104.0" promptText="Username" />
+            <PasswordField fx:id="passWordField" layoutX="215.0" layoutY="137.0" promptText="Password" />
+            <Button fx:id="newUserButton" disable="true" layoutX="216.0" layoutY="178.0" mnemonicParsing="false" onAction="#onNewUserButton" text="NEW USER" />
+            <Button fx:id="logInButton" disable="true" layoutX="304.0" layoutY="178.0" mnemonicParsing="false" onAction="#onLogInButton" text="LOGIN" />
+            <Text fill="WHITE" layoutX="394.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Her kan man lage en ny bruker eller logge inn med brukernavn &quot;sensor&quot; og passord &quot;prosjekt&quot;" wrappingWidth="171.99995930989598">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="startPage" layoutX="-2.0" layoutY="-1.0" prefHeight="337.0" prefWidth="583.0" visible="false">
+         <children>
+            <Text fill="WHITE" layoutX="81.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guttas BlackJack" textAlignment="CENTER" wrappingWidth="440.0309143066406">
+               <font>
+                  <Font name="Broadway" size="48.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <Button fx:id="newGameButton" layoutX="190.0" layoutY="218.0" mnemonicParsing="false" onAction="#onNewGameButton" style="-fx-background-color: #03030300;" text="NEW GAME" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="34.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="gamePage" prefHeight="341.0" prefWidth="580.0" visible="false">
+         <children>
+            <Text fill="WHITE" layoutX="430.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL AMOUNT:" wrappingWidth="97.47002410888672">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <Text fill="WHITE" layoutX="518.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <Label fx:id="totalAmountDisplayer" layoutX="430.0" layoutY="62.0" prefHeight="31.0" prefWidth="85.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <AnchorPane fx:id="betPane" layoutX="340.0" layoutY="231.0" prefHeight="109.0" prefWidth="241.0">
+               <children>
+                  <Text fill="WHITE" layoutX="56.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD BETS:">
+                     <font>
+                        <Font name="Arial Black" size="19.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Text>
+                  <Button fx:id="fiveButton" layoutX="27.0" layoutY="28.0" mnemonicParsing="false" onAction="#onFiveButton" prefHeight="81.0" prefWidth="85.0" style="-fx-background-color: #03030300;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="73.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@10chip.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="tenButton" layoutX="121.0" layoutY="24.0" mnemonicParsing="false" onAction="#onTenButton" prefHeight="81.0" prefWidth="119.0" style="-fx-background-color: #03030300;">
+                     <graphic>
+                        <ImageView fitHeight="72.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@blackchip.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Text fill="WHITE" layoutX="14.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5">
+                     <font>
+                        <Font name="Arial Black" size="23.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Text>
+                  <Text fill="WHITE" layoutX="121.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <Label fx:id="currentBetDisplayer" layoutX="52.0" layoutY="304.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <Text fill="WHITE" layoutX="14.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CURRENT BET:" wrappingWidth="152.94241333007812">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <Button fx:id="eraseBetButton" layoutX="2.0" layoutY="248.0" mnemonicParsing="false" onAction="#onEraseBetButton" prefHeight="38.0" prefWidth="134.0" style="-fx-background-color: #03030300;" text="ERASE BET" textFill="#d70000">
+               <font>
+                  <Font name="Arial Black" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="startGamblingButton" mnemonicParsing="false" onAction="#onStartGamblingButton" prefHeight="0.0" prefWidth="276.0" style="-fx-background-color: #03030300;" text="START GAMBLING" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="allInButton" layoutX="412.0" layoutY="93.0" mnemonicParsing="false" onAction="#onAllInButton" prefHeight="38.0" prefWidth="134.0" style="-fx-background-color: #03030300;" text="ALL IN!" textFill="#fb35d6">
+               <font>
+                  <Font name="Arial Black" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="playerDeskPage" prefHeight="342.0" prefWidth="580.0" visible="false">
+         <children>
+            <Label fx:id="playerCount" layoutX="468.0" layoutY="193.0" prefHeight="38.0" prefWidth="75.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="dealerCount" layoutX="468.0" layoutY="64.0" prefHeight="38.0" prefWidth="75.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="17.0" />
+               </font>
+            </Label>
+            <Text fill="WHITE" layoutX="448.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YOUR COUNT:">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="440.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEALER COUNT:">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <GridPane fx:id="playerCardPane" layoutX="8.0" layoutY="156.0" prefHeight="176.0" prefWidth="433.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.33331298828125" minWidth="10.0" prefWidth="80.66666666666666" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.33333333333334" minWidth="10.0" prefWidth="81.33333333333334" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="10.0" prefWidth="75.66670735677081" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.33331298828125" minWidth="10.0" prefWidth="79.6666259765625" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.33331298828125" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="card4" fitHeight="58.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="card2" fitHeight="58.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="card3" fitHeight="58.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="card5" fitHeight="58.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="card6" fitHeight="58.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="card1" fitHeight="58.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="hitButton" mnemonicParsing="false" onAction="#onHitButton" prefHeight="42.0" prefWidth="75.0" style="-fx-background-color: #16c03b;" text="HIT">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font name="Arial Black" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="standButton" mnemonicParsing="false" onAction="#onStandButton" prefHeight="42.0" prefWidth="75.0" style="-fx-background-color: #ff0909;" text="STAND" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Arial Black" size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <ImageView fx:id="card7" fitHeight="58.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="card8" fitHeight="58.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="card9" fitHeight="58.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="card10" fitHeight="58.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button fx:id="doubleButton" mnemonicParsing="false" onAction="#onDoubleButton" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: #ff00ff;" text="Double" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="Arial Black" size="15.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </GridPane>
+            <GridPane layoutX="8.0" layoutY="5.0" prefHeight="156.0" prefWidth="320.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="dealerCard1" fitHeight="69.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="dealerCard3" fitHeight="69.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="dealerCard2" fitHeight="69.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="dealerCard4" fitHeight="69.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="dealerCard6" fitHeight="69.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="dealerCard5" fitHeight="69.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="dealerCard7" fitHeight="69.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="dealerCard8" fitHeight="69.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="dealerCard10" fitHeight="69.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="dealerCard9" fitHeight="69.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+            <Text fx:id="winText" fill="#ffc118" layoutX="220.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Win" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="160.00000508626295">
+               <font>
+                  <Font name="Arial Black" size="27.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <Text fx:id="lossText" fill="#d00b0b" layoutX="214.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer wins" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="193.33333333333326">
+               <font>
+                  <Font name="Arial Black" size="28.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <Button fx:id="continueButton" layoutX="311.0" layoutY="230.0" mnemonicParsing="false" onAction="#onContinueButton" prefHeight="88.0" prefWidth="221.0" style="-fx-background-color: #03030300;" text="CONTINUE" textFill="#2c673d" visible="false">
+               <font>
+                  <Font name="Arial Black" size="27.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text fx:id="dealerBustText" fill="#ffc118" layoutX="167.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer busted, win" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="308.66662597656256">
+               <font>
+                  <Font name="Arial Black" size="27.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <Text fx:id="playerBustText" fill="#d00303" layoutX="179.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You busted, dealer wins" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="241.33333333333326">
+               <font>
+                  <Font name="Arial Black" size="27.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <Text fx:id="drawText" fill="#1abfff" layoutX="220.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Push" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="160.00000508626295">
+               <font>
+                  <Font name="Arial Black" size="27.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <Text fx:id="blackJackText" fill="#000507" layoutX="195.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BlackJack!" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="221.33333333333326">
+               <font>
+                  <Font name="Arial Black" size="27.0" />
+               </font>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="finishPage" prefHeight="342.0" prefWidth="580.0" visible="false">
+         <children>
+            <Button fx:id="playAgainButton" layoutX="195.0" layoutY="199.0" mnemonicParsing="false" onAction="#newGame" style="-fx-background-color: #03030300;" text="Play again" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="34.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text fill="WHITE" layoutX="70.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game over" textAlignment="CENTER" wrappingWidth="440.0309143066406">
+               <font>
+                  <Font name="Broadway" size="48.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <Text fill="WHITE" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="you ran out of money :(" textAlignment="CENTER" wrappingWidth="587.0">
+               <font>
+                  <Font name="Arial Black" size="22.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
