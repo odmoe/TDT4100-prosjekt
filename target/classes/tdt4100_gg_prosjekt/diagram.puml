@@ -1,0 +1,60 @@
+
+@startuml Sekvensdiagram Book
+
+actor Receptionist
+participant "View" as ba
+participant "Controller" as bc
+participant "BookingSystem" as bs
+participant "ReadWriteBooking" as rwb
+
+Receptionist -> ba : add new booking
+ba -> bc : bookButtonClick()
+bc -> bs : book(resident, roomType, startDate, endDate)
+bs -> rwb : isFilePathPresent()
+
+group alt : [file is present]
+    bs <-- rwb : true
+else file is not present
+    bs <-- rwb : false
+    bs -> bs : setInfoText("Finner ikke fil(...)")
+    bc -> bc : updateAllUI("Finner ikke fil(...)", ++)
+    Receptionist <-- ba : booking not possible
+end
+
+bs -> bs : isValidName(resident)
+bs -> bs : isValidDate(startDate, endDate)
+
+group alt : [input is not valid]
+    bs -> bs : handleWrongInput(resident, startDate, endDate)
+    bc <-- bs : IllegalArgumentException(errorMessage)
+    bc -> bs : setInfoText(errorMessage)
+    bc -> bc : updateAllUI(errorMessage, ++)
+    Receptionist <-- ba : booking not possible
+end
+
+bs -> bs : Rooms.stream().filter()
+bs -> Room : isAvailable(startDate, endDate)
+
+group alt : [room is available]
+    bs <-- Room : true
+else  room not available
+    bs <-- Room : false
+    bc <-- bs : NoSuchElementException(errorMessage)
+    bc -> bs : setInfoText(errorMessage)
+    bc -> bc : updateAllUI(errorMessage, ++)
+    Receptionist <-- ba : booking not possible
+end
+
+bs -[#Green]> bs : findFirst()
+bs -> Room : book(startDate, endDate, resident)
+Room -> Room : update resident map
+bs -> PriceBook : getPrice(startDate, endDate, roomType)
+bs <-- PriceBook : booking price
+bs -> bs : add new Booking to bookingList
+bs -> bs : setInfoText()
+bs -> bs : update income
+bs -> rwb : writeBookings(bookingList)
+bc -> bc : updateAllUI()
+Receptionist <-- ba : booking done
+
+@enduml

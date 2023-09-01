@@ -1,0 +1,7 @@
+sensor:prosjekt:100.0
+brukernavn:passord:100
+ToyseBruker:ToysePassord:500
+TulleBruker:TullePassord:700
+oskar:oskar:0.0
+brede:brede:60.0
+oskmoe:kdkkd:150.0
